@@ -6,16 +6,17 @@ import {
   updateCourse,
   deleteCourse,
 } from '../controllers/courseController';
+import { getLecturesByCourse, createLecture } from '../controllers/lectureController';
 import { protectAdmin } from '../middlewares/authMiddleware';
 
 export const courseRoutes = Router();
 
-// Public (students)
 courseRoutes.get('/', getAllCourses);
 courseRoutes.get('/:courseId', getCourseById);
+courseRoutes.get('/:courseId/lectures', getLecturesByCourse);
 
-// Admin only
 courseRoutes.post('/', protectAdmin, createCourse);
 courseRoutes.put('/:courseId', protectAdmin, updateCourse);
 courseRoutes.delete('/:courseId', protectAdmin, deleteCourse);
+courseRoutes.post('/:courseId/lectures', protectAdmin, createLecture);
 
