@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { env } from './env';
 
 export async function connectDatabase() {
-  await mongoose.connect(env.MONGODB_URI);
+  await mongoose.connect(env.MONGODB_URI, { dbName: 'lmsdb' });
   console.log('MongoDB connected');
 }
 

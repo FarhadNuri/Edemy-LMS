@@ -1,6 +1,3 @@
-// WARNING: This script DELETES all data in Lecture, Course, and Admin.
-// Use only on a dev or demo database.
-
 import bcrypt from 'bcryptjs';
 import { getRequiredEnv } from './config/env';
 import { connectDatabase } from './config/db';
@@ -14,7 +11,6 @@ async function seedDatabase() {
 
   await connectDatabase();
 
-  // Start from a clean state so running the seed twice does not create duplicates.
   await Lecture.deleteMany({});
   await Course.deleteMany({});
   await Admin.deleteMany({});
@@ -40,7 +36,6 @@ async function seedDatabase() {
     thumbnailUrl: 'https://picsum.photos/seed/node/600/400',
   });
 
-  // Replace these placeholder video IDs with real YouTube embed video IDs before the demo.
   await Lecture.insertMany([
     {
       course: reactCourse._id,

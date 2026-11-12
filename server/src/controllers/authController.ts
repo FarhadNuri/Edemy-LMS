@@ -12,14 +12,9 @@ export async function login(req: Request, res: Response, next: NextFunction) {
       return res.status(400).json({ success: false, message: inputError });
     }
 
-    // The input was checked above, so it is safe to treat it as LoginInput.
     const { email, password } = req.body as LoginInput;
-
-    // password has select:false in the model, so we ask for it on purpose here.
     const admin = await Admin.findOne({ email: email.toLowerCase().trim() }).select('+password');
 
-    // Same message for "no such email" and "wrong password",
-    // this stops attackers learning which emails exist.
     if (!admin) {
       return res.status(401).json({ success: false, message: 'Invalid email or password' });
     }
@@ -43,11 +38,8 @@ export async function login(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-// The client calls this on page load to check if the saved token is still valid.
 export function getCurrentAdmin(req: AuthRequest, res: Response) {
-  const admin = req.admin; // set by protectAdmin
-
-  // protectAdmin always sets it, but TypeScript cannot know that.
+  const admin = req.admin; 
   if (!admin) {
     return res.status(401).json({ success: false, message: 'Please log in first' });
   }
