@@ -30,3 +30,27 @@ export function getEmbedUrl(videoUrl: string): string | null {
   return null;
 }
 
+export function getWatchUrl(videoUrl: string): string {
+  if (!videoUrl) return "";
+  const url = videoUrl.trim();
+
+  // If it's a YouTube embed URL, convert to standard watch URL so browser navigation doesn't trigger Error 153
+  if (url.includes("youtube.com/embed/")) {
+    const parts = url.split("youtube.com/embed/");
+    const videoId = parts[1]?.split("?")[0]?.split("/")[0];
+    if (videoId) {
+      return `https://www.youtube.com/watch?v=${videoId}`;
+    }
+  }
+
+  if (url.includes("youtu.be/")) {
+    const videoId = url.split("youtu.be/")[1]?.split("?")[0]?.split("/")[0];
+    if (videoId) {
+      return `https://www.youtube.com/watch?v=${videoId}`;
+    }
+  }
+
+  return url;
+}
+
+

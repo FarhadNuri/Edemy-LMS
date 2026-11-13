@@ -1,4 +1,4 @@
-import { getEmbedUrl } from "@/utils/getEmbedUrl";
+import { getEmbedUrl, getWatchUrl } from "@/utils/getEmbedUrl";
 import { Button } from "@/components/ui/Button";
 
 type VideoPlayerProps = {
@@ -30,7 +30,7 @@ export function VideoPlayer({ videoUrl, title }: VideoPlayerProps) {
           This video link cannot be played inside an iframe. You can open and watch it directly in a new tab.
         </p>
         <div className="mt-4">
-          <a href={videoUrl} target="_blank" rel="noopener noreferrer">
+          <a href={getWatchUrl(videoUrl)} target="_blank" rel="noopener noreferrer">
             <Button size="sm" variant="secondary">
               Open video in new tab ↗
             </Button>
