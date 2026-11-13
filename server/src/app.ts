@@ -40,6 +40,17 @@ app.use(async (_req, _res, next) => {
   }
 });
 
+app.get('/', (_req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Edemy API Server is running successfully on Vercel',
+    endpoints: {
+      health: '/api/health',
+      courses: '/api/courses',
+    },
+  });
+});
+
 app.get('/api/health', (_req, res) => {
   res.status(200).json({ success: true, message: 'Server is running' });
 });
