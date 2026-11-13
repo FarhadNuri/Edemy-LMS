@@ -1,5 +1,6 @@
 import { Lecture } from "@/types";
 import { Button } from "@/components/ui/Button";
+import { getWatchUrl } from "@/utils/getEmbedUrl";
 
 type LectureAdminListProps = {
   lectures: Lecture[];
@@ -46,12 +47,12 @@ export function LectureAdminList({
                 )}
                 <div className="mt-1.5">
                   <a
-                    href={lecture.videoUrl}
+                    href={getWatchUrl(lecture.videoUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-xs text-primary hover:underline max-w-full truncate"
                   >
-                    <span className="truncate">{lecture.videoUrl}</span>
+                    <span className="truncate">{getWatchUrl(lecture.videoUrl)}</span>
                     <span className="text-[10px]">↗</span>
                   </a>
                 </div>
@@ -121,12 +122,12 @@ export function LectureAdminList({
 
                 <td className="py-3 px-4">
                   <a
-                    href={lecture.videoUrl}
+                    href={getWatchUrl(lecture.videoUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-xs text-primary hover:underline max-w-[160px] truncate"
                   >
-                    <span className="truncate">{lecture.videoUrl}</span>
+                    <span className="truncate">{getWatchUrl(lecture.videoUrl)}</span>
                     <span className="text-[10px]">↗</span>
                   </a>
                 </td>
