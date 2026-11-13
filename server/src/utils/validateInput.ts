@@ -15,6 +15,12 @@ function isValidUrl(value: unknown): boolean {
   }
 }
 
+export function getRegisterError(body: RequestBody = {}): string | null {
+  if (!isNonEmptyString(body.name)) return 'Name is required';
+  if (!isNonEmptyString(body.email)) return 'Email is required';
+  if (!isNonEmptyString(body.password)) return 'Password is required';
+  return null;
+}
 
 export function getLoginError(body: RequestBody = {}): string | null {
   if (!isNonEmptyString(body.email)) return 'Email is required';
@@ -42,4 +48,3 @@ export function getLectureError(body: RequestBody = {}): string | null {
   }
   return null;
 }
-
