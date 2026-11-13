@@ -1,7 +1,13 @@
 import { Request } from 'express';
 import { HydratedDocument } from 'mongoose';
 import { IAdmin } from '../models/Admin';
+import { IUser } from '../models/User';
 
+export interface RegisterInput {
+  name: string;
+  email: string;
+  password: string;
+}
 
 export interface LoginInput {
   email: string;
@@ -27,4 +33,5 @@ export interface TokenPayload {
 
 export interface AuthRequest extends Request {
   admin?: HydratedDocument<IAdmin>;
+  user?: HydratedDocument<IUser>;
 }
